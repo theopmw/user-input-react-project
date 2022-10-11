@@ -28,6 +28,15 @@ const AddUser = (props) => {
 
   const addUserHandler = (event) => {
     event.preventDefault();
+    // Check if enteredUsername/enteredAge is empty (an empty string)
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      return;
+    }
+    // Check if enteredAge is smaller than one
+    // force conversion of entered age (entered on the form as a string) to a number by adding the preceding '+'
+    if (+enteredAge < 1) {
+      return;
+    }
     console.log(enteredUsername, enteredAge);
     // Set state snapshots to empty strings
     setEnteredUsername('');
