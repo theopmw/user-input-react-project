@@ -25,9 +25,13 @@ const AddUser = (props) => {
     // Call setEnteredAge and set it to what the user has currently entered using the (event) object to access the target of the event (which is the input element) and the value property of the input to get the currently entered value
     setEnteredAge(event.target.value);
   };
+
   const addUserHandler = (event) => {
     event.preventDefault();
     console.log(enteredUsername, enteredAge);
+    // Set state snapshots to empty strings
+    setEnteredUsername('');
+    setEnteredAge('');
   };
   return (
     <Card className={classes.input}>
@@ -37,12 +41,21 @@ const AddUser = (props) => {
         <input
           id="username"
           type="text"
+          // Set enteredUsername to an empty string when the form is submitted (the addUserHandler function is complete)
+          value={enteredUsername}
           // Bind usernameChangeHandler function to the username input using the onChange prop which ties this to the change event listener (event) in the usernameChangeHandler function. The usernameChangeHandler function will be triggered for every keystroke in the username input element
           onChange={usernameChangeHandler}
         ></input>
         {/* Age label and input */}
         <label htmlFor="age">Age (Years)</label>
-        <input id="age" type="number" onChange={ageChangeHandler}></input>
+        <input
+          id="age"
+          type="number"
+          // Set enteredAge to an empty string when the form is submitted (the addUserHandler function is complete)
+          value={enteredAge}
+          // Bind ageChangeHandler function to the username input using the onChange prop which ties this to the change event listener (event) in the ageChangeHandler function. The ageChangeHandler function will be triggered for every keystroke in the age input element
+          onChange={ageChangeHandler}
+        ></input>
         {/* Submit button */}
         <Button type="submit">Add User</Button>
       </form>
