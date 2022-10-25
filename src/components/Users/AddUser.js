@@ -37,7 +37,9 @@ const AddUser = (props) => {
     if (+enteredAge < 1) {
       return;
     }
-    console.log(enteredUsername, enteredAge);
+    // Call props.onAddUser and execute as a function as the value returned on the prop is a function (addUserHandler in App.js is a function)
+    // Forwards 2 pieces of data (enteredUsername & enteredAge) to the App component on every click of the 'Add User' button
+    props.onAddUser(enteredUsername, enteredAge);
     // Set state snapshots to empty strings
     setEnteredUsername('');
     setEnteredAge('');
