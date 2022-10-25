@@ -10,8 +10,11 @@ function App() {
   const addUserHandler = (uName, uAge) => {
     // call setUsersList and update the state by taking the old list and appending a new element to it
     setUsersList((prevUsersList) => {
-      // Return a new array that pulls all users from the prevUsersList using the spread operator and adds them to the new array and adds a new element at the end of the array using a JS object which has a name field that stores uName as the value and an age field that stores uAge as the value
-      return [...prevUsersList, { name: uName, age: uAge }];
+      // Return a new array that pulls all users from the prevUsersList using the spread operator and adds them to the new array and adds a new element at the end of the array using a JS object which has a name field that stores uName as the value, an age field that stores uAge as the value and an id field that generates a unique id for each user created
+      return [
+        ...prevUsersList,
+        { name: uName, age: uAge, id: Math.random().toString() },
+      ];
     });
   };
   return (
