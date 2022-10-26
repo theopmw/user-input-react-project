@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 import classes from './AddUser.module.css';
+import ErrorModal from '../UI/ErrorModal';
 
 const AddUser = (props) => {
   // Starting state will be an empty string as will be manging one piece of state for each input
@@ -45,32 +46,35 @@ const AddUser = (props) => {
     setEnteredAge('');
   };
   return (
-    <Card className={classes.input}>
-      <form onSubmit={addUserHandler}>
-        {/* Username label and input */}
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          // Set enteredUsername to an empty string when the form is submitted (the addUserHandler function is complete)
-          value={enteredUsername}
-          // Bind usernameChangeHandler function to the username input using the onChange prop which ties this to the change event listener (event) in the usernameChangeHandler function. The usernameChangeHandler function will be triggered for every keystroke in the username input element
-          onChange={usernameChangeHandler}
-        ></input>
-        {/* Age label and input */}
-        <label htmlFor="age">Age (Years)</label>
-        <input
-          id="age"
-          type="number"
-          // Set enteredAge to an empty string when the form is submitted (the addUserHandler function is complete)
-          value={enteredAge}
-          // Bind ageChangeHandler function to the username input using the onChange prop which ties this to the change event listener (event) in the ageChangeHandler function. The ageChangeHandler function will be triggered for every keystroke in the age input element
-          onChange={ageChangeHandler}
-        ></input>
-        {/* Submit button */}
-        <Button type="submit">Add User</Button>
-      </form>
-    </Card>
+    <div>
+      <ErrorModal title="An error occured" message="Soemthing went wrong" />
+      <Card className={classes.input}>
+        <form onSubmit={addUserHandler}>
+          {/* Username label and input */}
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            // Set enteredUsername to an empty string when the form is submitted (the addUserHandler function is complete)
+            value={enteredUsername}
+            // Bind usernameChangeHandler function to the username input using the onChange prop which ties this to the change event listener (event) in the usernameChangeHandler function. The usernameChangeHandler function will be triggered for every keystroke in the username input element
+            onChange={usernameChangeHandler}
+          ></input>
+          {/* Age label and input */}
+          <label htmlFor="age">Age (Years)</label>
+          <input
+            id="age"
+            type="number"
+            // Set enteredAge to an empty string when the form is submitted (the addUserHandler function is complete)
+            value={enteredAge}
+            // Bind ageChangeHandler function to the username input using the onChange prop which ties this to the change event listener (event) in the ageChangeHandler function. The ageChangeHandler function will be triggered for every keystroke in the age input element
+            onChange={ageChangeHandler}
+          ></input>
+          {/* Submit button */}
+          <Button type="submit">Add User</Button>
+        </form>
+      </Card>
+    </div>
   );
 };
 
