@@ -12,8 +12,9 @@ const AddUser = (props) => {
   // enteredUsername is the current state snapshot, every time the AddUser component re-renders (eg when the state is updated) enteredUsername will hold the latest state snapshot
   // setEnteredUsername holds a function we can call to change the enteredUsername state to trigger a re-render cycle
   // The exact same sequence is then repeated for the age input
-  const [enteredUsername, setEnteredUsername] = useState();
-  const [enteredAge, setEnteredAge] = useState();
+  const [enteredUsername, setEnteredUsername] = useState('');
+  const [enteredAge, setEnteredAge] = useState('');
+  const [error, setError] = useState();
 
   // usernameChangeHandler function that is triggered on every keystroke of the username input
   const usernameChangeHandler = (event) => {
@@ -31,11 +32,21 @@ const AddUser = (props) => {
     event.preventDefault();
     // Check if enteredUsername/enteredAge is empty (an empty string)
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      // Call setError and set it to an object
+      setError({
+        title: 'Invalid input',
+        message: 'Please enter a valid name and age (non-empty values)',
+      });
       return;
     }
     // Check if enteredAge is smaller than one
     // force conversion of entered age (entered on the form as a string) to a number by adding the preceding '+'
     if (+enteredAge < 1) {
+      // Call setError and set it to an object
+      setError({
+        title: 'Invalid age',
+        message: 'Please enter a valid age (> 0)',
+      });
       return;
     }
     // Call props.onAddUser and execute as a function as the value returned on the prop is a function (addUserHandler in App.js is a function)
@@ -47,7 +58,7 @@ const AddUser = (props) => {
   };
   return (
     <div>
-      <ErrorModal title="An error occured" message="Soemthing went wrong" />
+      {error && <ErrorModal title={error.title} message={error.message} />}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           {/* Username label and input */}
