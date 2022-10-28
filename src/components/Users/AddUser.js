@@ -56,9 +56,21 @@ const AddUser = (props) => {
     setEnteredUsername('');
     setEnteredAge('');
   };
+
+  // Function to set setError to a falsy value (eg null)
+  const errorHandler = () => {
+    setError(null);
+  };
+
   return (
     <div>
-      {error && <ErrorModal title={error.title} message={error.message} />}
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />
+      )}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           {/* Username label and input */}
