@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import AddUser from './components/Users/AddUser';
 import UsersList from './components/Users/UsersList';
@@ -18,13 +18,14 @@ function App() {
     });
   };
   return (
-    <div>
+    // Depending on your build setup the Fragment element can be replaced by '<React.Fragment></React.Fragment>' (if fragment is not imported when React is imported) or '<></>'. Since Fragment has been imported the '<Fragment></Fragment>' element has been used in this instance.
+    <Fragment>
       {/* Block for getting the user data */}
       {/* addUserHandler is passed to the onAddUser prop on the AddUser component*/}
       <AddUser onAddUser={addUserHandler} />
       {/* Forward usersList to the UsersList component */}
       <UsersList users={usersList} />
-    </div>
+    </Fragment>
   );
 }
 
