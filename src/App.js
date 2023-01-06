@@ -19,6 +19,7 @@ function App() {
   };
   return (
     // Depending on your build setup the Fragment element can be replaced by '<React.Fragment></React.Fragment>' (if fragment is not imported when React is imported) or '<></>'. Since Fragment has been imported the '<Fragment></Fragment>' element has been used in this instance.
+    // Fragments allow the writing iof cleaner code to end up with less unneccessary HTML code on the final page
     <Fragment>
       {/* Block for getting the user data */}
       {/* addUserHandler is passed to the onAddUser prop on the AddUser component*/}
